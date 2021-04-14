@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 引入表情包的css -->
+	<link rel="stylesheet" type="text/css" href="public/lib/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" type="text/css" href="public/lib/jquery.emoji.css">
+	<!-- 引入自定义css -->
+	<link rel="stylesheet" type="text/css" href="/public/css/style.css">
+	<!-- 引入图标的css -->
+	<link rel="stylesheet" type="text/css" href="/public/font/iconfont.css">
+	
+	<link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+	<title>聊天室</title>
+</head>
+<body>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<!-- juqery和表情包的js start-->
+	<script type="text/javascript" src="public/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="public/lib/jquery.mousewheel-3.0.6.min.js"></script>
+	<script type="text/javascript" src="public/lib/jquery.mCustomScrollbar.min.js"></script>
+	<script type="text/javascript" src="public/lib/jquery.emoji.min.js"></script>
+	<!-- juqery和表情包的js end -->
+	<div class="chatroom">
+		<!-- 注册 -->
+		<div class="login_view register_box"  >
+			<h3>注册用户</h3>
+			<div class="form_item">
+				<label for="r_username">账号</label>
+				<div><input type="text" name="" id="r_username" placeholder="3-8位字符" maxlength="8" minlength="3"></div>
+			</div>
+			<div class="form_item">
+				<label for="r_password">密码</label>
+				<div><input type="password" name="" id="r_password" placeholder="6位数字" id="password"></div>
+			</div>
+			<div class="form_item">
+				<label>头像</label>
+				<div>
+					<ul>
+						<li class="avater_on"><img src="public/img/avater1.png"></li>
+						<li><img src="public/img/avater2.png"></li>
+						<li><img src="public/img/avater3.png"></li>
+						<li><img src="public/img/avater4.png"></li>
+						<li><img src="public/img/avater5.png"></li>
+						<li><img src="public/img/avater6.png"></li>
+						<li><img src="public/img/avater7.png"></li>
+						<li><img src="public/img/avater8.png"></li>
+					</ul>
+				</div>
+			</div>
+				<div class="login_btn">
+				<button id="register_btn">注册</button>
+				<button id="toLogin_btn">登录</button>
+			</div>`
+		</div>
+		<!-- 登录 -->
+		<div class="login_view login_box" style="display: none">
+			<h3>登录聊天室</h3>
+			<div class="form_item">
+				<label for="username">账号</label>
+				<div><input type="text" name="" id="username" placeholder="登录账号"></div>	
+			</div>
+			<div class="form_item">
+				<label for="password">密码</label>
+				<div><input type="password" name="" id="password" placeholder="密码"></div>	
+			</div>
+			<div class="login_btn">
+				<button id="login_btn">登录</button>
+				<button id="toRegister_btn"> 注册</button>
+			</div>
+		</div>
+		<!-- 聊天室 -->
+		<div class="window_box" style="display: none">
+			<!-- 左列表 -->
+			<div class="user_list">
+				<!-- 个人信息 -->
+				<div class="user_list_header">
+					<div class="user_list_header_avater">
+						<img src="public/img/avater1.png" class="user_list_header_avater_img">
+					</div>
+					<div class="user_list_header_avater_text">
+						<p>好耶啊</p>
+					</div>
+				</div>
+				<!-- 群聊标题 -->
+				<div class="user_list_little">
+					<div class="user_list_little_img">
+						<img src="public/img/group.png">
+					</div>				
+					<p class="user_list_little_text">
+						群聊(
+						<span class="user_list_little_inline_g">3</span>
+						/
+						<span id="user_list_little_count_g">99</span>
+						)
+					</p>
+				</div>
+				<!-- 群聊组 -->
+				<div class="user_list_group user_list_item" id="user_list_group">
+					<div class="user_list_group_img">
+						<img src="public/img/avater_all.png">
+					</div>
+					<div class="user_list_group_text">
+						<p>群聊</p>
+					</div>
+				</div>
+				<!-- 在线用户 -->
+				<!-- 在线用户标题 -->
+				<div class="user_list_little">
+					<div class="user_list_little_img">
+						<img src="public/img/inline.png">
+					</div>				
+					<p class="user_list_little_text">
+						在线用户(
+						<span class="user_list_little_inline_g">3</span>
+						)
+					</p>
+				</div>
+				<!-- 在线用户分组 -->
+				<div class="user_list_tab">
+					<!-- <div >最近联系</div> -->
+					<div class="user_list_tab_on">全部用户</div>
+				</div>
+				<!-- 最近用户列表 -->
+				<div class="user_list_item_relevant" style="display: none;" >
+					<!-- <div class="user_list_item">
+						<div class="user_list_item_img">
+						 	<img src="public/img/avater3.png">
+						</div>
+						<div class="user_list_item_text">
+							<div class="user_list_item_name">
+								<p>小冬</p>
+							</div>
+							<span class="status_tag status_tag_inline">在线</span> 
+						</div>
+					</div>
+					<div class="user_list_item">
+						<div class="user_list_item_img">
+						 	<img src="public/img/avater4.png">
+						</div>
+						<div class="user_list_item_text">
+							<div class="user_list_item_name">
+								<p>小名</p>
+							</div>
+							<span class="status_tag">离线</span> 
+						</div>						
+					</div> -->
+				</div>
+				<!-- 全部用户列表 -->
+				<div class="user_list_item_all" >
+					<!-- <div class="user_list_item">
+						<div class="user_list_item_img">
+						 	<img src="public/img/avater2.png">
+						</div>
+						<div class="user_list_item_text">
+							<div class="user_list_item_name">
+								<p>小强</p>
+							</div>
+							<span class="status_tag status_tag_inline">在线</span> 
+						</div>
+					</div> -->
+										
+				</div>
+			</div>
+			<!-- 消息窗口 -->
+			<div class="message_box">
+				<!-- 消息窗口标题 -->
+				<div class="message_box_title">
+					聊天室(
+					<span class="user_list_little_inline_g">1</span>
+					)
+				</div>
+				<!-- 消息显示区 -->
+				<div class="message_box_content">
+					<!-- 加载消息按钮 -->
+				<!-- 	<div class="load_message">
+						<span class="iconfont icon-dianjijiazaigengduoweixuan"></span>
+						加载更多
+					</div> -->
+					<!-- 系统消息 -->
+				<!-- 	<div class="system_message">下午13:22</div>
+					<div class="system_message">aa加入聊天室</div>
+					<div class="system_message">aa离开聊天室</div> -->
+					<!-- 左边的消息 -->
+				<!-- 	<div class="message_item_left">
+						
+						<div class="message_item_avater">
+							<img src="public/img/avater8.png">
+						</div>
+						<div class="message_item_content">
+
+							<div class="message_item_name">小红</div>
+
+							<div class="message_item_bubble">
+								<p>你们</p>
+							</div>
+						</div>	
+					</div> -->
+					<!-- 右边的消息 -->
+					<!-- <div class="message_item_right">
+						<div class="message_item_right_content">
+							<div class="message_item_right_bubble">
+								<p>你好 
+								  啊</p>
+							</div>
+						</div>
+						<div class="message_item_avater">
+							<img src="public/img/avater4.png">
+						</div>
+					</div> -->
+				</div>
+				<!-- 信息发送区 -->
+				<div class="message_send_box">
+					<!-- 表情，图片，文件的列表菜单 -->
+					<div class="message_send_box_menu">
+						<div class="message_send_enjoy">
+							<img src="public/img/menu-enjoy.png" id="exeEnjoy">
+							<!-- <input type="" name="" id="content"> -->
+						</div>
+						<div class="message_send_img">
+							<img src="public/img/menu-img.png">
+							<input type="file" name="" title="发送图片" accept="image/*" id="send_image">
+						</div>
+						<div class="message_send_file">
+							<img src="public/img/menu-file.png">
+							<input type="file" name="" title="发送文件" accept="text/html,application/zip,application/gzip,application/pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document" id="send_file">
+						</div>
+					</div>
+					<!-- 内容输入 -->
+					<div class="message_send_box_content">
+						<div type="text" id='message_content' contenteditable></div>
+					</div>
+					<!-- 发送按钮 -->
+					<div class="message_send_box_exeBtn">
+						<button id="message_send_box_exeBtn_btn">发送</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+
+<script type="text/javascript" src="public/js/index.js"></script>
+<script type="text/javascript">
+		$("#exeEnjoy").click(function (e) {
+				$("#message_content").emoji({
+				button:"#exeEnjoy",
+				position:"topRight",
+				animation: 'slide',
+			    icons: [{
+			        name: "QQ表情",
+			        path: "/public/lib/img/qq/",
+			        maxNum: 91,
+			        excludeNums: [41, 45, 54],
+			        file: ".gif",
+			        placeholder: "#qq_{alias}#"
+			    },{
+			    	name: "贴吧表情",
+			        path: "/public/lib/img/tieba/",
+			        maxNum: 49,
+			        // excludeNums: [41, 45, 54],
+			        file: ".jpg",
+			        placeholder: "#tieba_{alias}#"
+			    },{
+			    	name: "emoji",
+			        path: "/public/lib/img/emoji/",
+			        maxNum: 84,
+			        file: ".png",
+			        placeholder: "#emoji_{alias}#"
+			    }
+			    ]
+		});
+		})
+		
+		
+	
+</script>
+</html>

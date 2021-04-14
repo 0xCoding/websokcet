@@ -1,0 +1,484 @@
+html,body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+* {
+	padding:0;
+	margin: 0;
+}
+/*背景样式*/
+.chatroom {
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/bg.jpg);
+	background-size: 100% 100%;
+}
+/*登录框样式*/
+.login_view{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 380px;
+	background-color: #FFFFFF;
+	border-radius: 4px;
+	box-shadow: #999 0 2px 10px;
+	padding: 20px;
+	padding-top: 0;
+	box-sizing: border-box;
+}
+/*标题样式*/
+.login_view h3 {
+	text-align: center;
+	font-weight: 400;
+	font-size: 24px;
+	margin:25px 0;
+}
+/*输入框样式*/
+.form_item {
+	display: flex;
+	margin-bottom: 15px;
+}
+.form_item> label {
+	display: inline-block;
+	width: 50px;
+	text-align: justify;
+	text-align-last: justify;
+	padding-right: 10px;
+}
+.form_item>div {
+	flex: 1;
+}
+.form_item input {
+	width: 200px;
+	border:1px solid #CCC;
+	padding:7px 0 7px 5px;
+	border-radius: 3px;
+	
+}
+/*按钮样式*/
+.login_btn{
+	text-align: center;
+}
+.login_btn button {
+	position: relative;
+	display: inline-block;
+	box-sizing: border-box;
+	width: 200px;
+	font-size: 14px;
+	line-height: 2.5555556;
+	text-align: center;
+	background-color: #66afe9;
+	color:#fff;
+	border-radius: 5px;
+	border:none;
+	cursor: pointer;
+	margin-top: 5px;
+	overflow: hidden;
+}
+.login_btn>button:nth-child(2){
+	width: 50px;
+	background-color: #CCC;
+	margin-right: -25px;
+}
+/*头像样式*/
+.register_box ul,.register_box ul li{
+	padding: 0;
+	margin: 0;
+} 
+.register_box ul li{
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	list-style: none;
+	cursor: pointer;
+	border:2px solid #fff;
+
+}
+.register_box ul li img {
+	width: 100%;
+	height: 100%;
+}
+.register_box ul  .avater_on {
+	border:2px solid #66afe9;
+}
+/*聊天窗口样式*/
+.window_box {
+	display: flex;
+	max-width: 1000px;
+	min-width: 500px;
+	height: 100%;
+	background-color: #eeeeee;
+	margin: auto;
+}
+.user_list {
+	position: relative;
+	left: 0;
+	width: 240px;
+	height: 100%;
+	background-color: #2E3238;
+	transition: all 0.3s;
+	overflow-y: auto;
+}
+/*个人信息*/
+.user_list_header {
+	display: flex;
+	margin-bottom: 5px;
+}
+.user_list_header_avater {
+	display: flex;
+	position: relative;
+	margin: 10px;
+
+}
+.user_list_header_avater_img {
+	width: 45px;
+	height: 45px;
+	border-radius: 5px;
+	align-items: center;
+	justify-content: center;
+}
+.user_list_header_avater_text {
+	flex: 1;
+	color: #ffffff;
+	font-size: 14px;
+	padding: 10px 0;
+	line-height: 45px;
+}
+/*群聊标题*/
+.user_list_little {
+	display: flex;
+	padding: 10px;
+	color:#ffffff;
+	font-size: 16px;
+	border-top: 1px solid #24272c;
+	border-bottom: 1px solid #24272c;
+	align-items: center;
+}
+.user_list_little_img {
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+}
+.user_list_little_img img{
+	width:100%;
+	height: 100%;
+}
+/*群聊组*/
+.user_list_group {
+	display: flex;
+	color:#ffffff;
+	font-size: 14px;
+}
+.user_list_group_img {
+	background-color: #414751;
+	width: 35px;
+	height: 35px;
+	margin: 10px ;
+}
+.user_list_group_img img{
+	width: 100%;
+	height: 100%;
+}
+.user_list_group_text {
+	line-height: 50px;
+}
+.user_list_tab {
+	box-sizing: border-box;
+	padding: 10px 5px;
+	text-align: center;
+	color:#ffffff;
+	font-size: 12px;
+	font-weight: 700;
+}
+.user_list_tab>div {
+	box-sizing: border-box;
+	display: inline-block;
+	padding: 6px 2px;
+	width: 60px;
+	background-color: #2a2a2a;
+	border-radius: 14px;
+	cursor: pointer;
+	border:1px solid #0a001f;
+
+}
+/*.user_list_group:hover {
+	background-color: #414751;
+	cursor: pointer;
+}*/
+/*最近联系人列表 或全部联系人列表*/
+.user_list_item_relevant ,.user_list_item_all{
+	color:#fff;
+	font-size: 14px;
+}
+.user_list_item {
+	position: relative;
+	display: flex;
+}
+.user_list_item_img {
+	display: flex;
+	width: 35px;
+	height: 35px;
+	margin: 10px ;
+	align-items: center;
+	justify-content: center;
+}
+.user_list_item_img img{
+	width: 100%;
+	height: 100%;
+}
+.user_list_item_text p{
+	flex: 1;
+	padding: 10px 0;
+	line-height: 35px;
+}
+.status_tag {
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	padding: 1px 6px;
+	color:#636360;
+	font-size: 10px;
+	border-radius: 3px;
+	background-color: #ccc;
+}
+.status_tag_inline {
+	color: #fff;
+	background-color: #00a8c6;
+}
+.user_list_item:hover {
+	background-color: #414751;
+	cursor: pointer;
+}
+.user_list_tab_on {
+	background:#ccc!important;
+	color:#0a001f!important;
+	border:1px solid #2a2a2a!important;
+}
+/*消息窗口*/
+.message_box {
+	display: flex;;
+	flex: 1;
+	flex-direction: column;
+}
+.message_box_title {
+	text-align: center;
+	padding: 15px;
+	border-bottom: 1px solid #ccc;
+}
+.message_box_content{
+	display: flex;;
+	flex: 1;
+	flex-direction: column;
+	padding: 0 10px;
+	overflow-y: auto;
+}
+.system_message,.load_message {
+	text-align: center;
+	font-size: 12px;
+	margin:4px auto;
+	max-width: 50%;
+	color:#b2b2b2;
+}
+.load_message>span {
+ 	font-size: 12px;
+}
+.load_message {
+	color:#346dc6;
+	cursor: pointer;
+}
+/*左边的消息*/
+.message_item_left ,.message_item_right{
+	display: flex;
+	margin-bottom: 20px;
+    max-width: 723px;
+   /* overflow-x: hidden;*/
+}
+.message_item_avater {
+	width: 45px;
+	height: 45px;
+	border-radius: 5px;
+
+}
+.message_item_avater img {
+	width: 100%;
+	height: 100%;
+}
+.message_item_content {
+	flex: 1;
+	text-align: left;
+	padding: 0 10px
+}
+
+.message_item_name {
+	font-size: 14px;
+	color:#a4a4a4;
+	margin:0 0 4px 0;
+
+}
+.message_item_bubble {
+	position: relative;
+	display: inline-block;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.message_item_bubble>p {
+	display: inline-block;
+	white-space: pre-line;
+	max-width: 480px;
+}
+.message_item_bubble>img {
+	max-width: 300px;
+	max-height: 300px;
+}
+/*文件信息处理 start*/
+.file_link >a {
+	display: flex;
+    text-decoration: none;
+}
+.file_link>a .file_msg_icon {
+	display: flex;
+    padding: 0 10px;
+    align-items: center;
+}
+.file_link>a .file_msg_icon >span {
+	font-size: 50px;
+	color: rgb(120, 101, 101);
+}
+.file_msg_link {
+	max-width: 250px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    color: #1005ff;
+}
+/*文件信息处理end*/
+
+.message_item_bubble:before {
+	position: absolute;
+    top: 14px;
+    left: -10px;
+    border: 6px solid transparent;
+    content: ' ';
+    border-right-color: #fff;
+    border-right-width: 4px;
+}
+/*右边的消息*/
+
+.message_item_right_content {
+	flex:1;
+	text-align: right;
+	padding-right: 0 10px;
+	margin-right: 7px;
+
+}
+.message_item_right_bubble {
+	position: relative;
+	display: inline-block;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: left;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.message_item_right_bubble>img ,.message_item_right_bubble>a {
+	max-width: 300px;
+	max-height: 300px;
+}
+.message_item_right_bubble>p {
+	display: inline-block;
+	white-space: pre-line;
+	max-width: 480px;
+}
+
+.message_item_right_bubble:before {
+	position: absolute;
+    top: 14px;
+    left: none;
+    right: -10px;
+    border: 6px solid transparent;
+    content: ' ';
+    border-left-color: #fff;
+    border-left-width: 4px;
+}
+/*信息发送部分*/
+.message_send_box {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	height: 160px;
+	padding: 0 5px;
+	border:1px solid #ccc;
+}
+.message_send_box_menu {
+	padding: 5px;
+	position: relative;
+}
+.message_send_enjoy ,.message_send_img,.message_send_file{
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	width: 25px;
+	margin-left: 5px;
+	
+}
+.message_send_enjoy {
+	height: 23px;
+}
+.message_send_img {
+	top: 3px;
+}
+.message_send_box_menu img {
+	width:100%;	
+	height: 100%;
+}
+
+.message_send_img>input,.message_send_file input {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	opacity: 0;
+
+}
+/*内容输入*/
+.message_send_box_content{
+	display: flex;
+	flex: 1;
+}
+.message_send_box_content #message_content {
+	padding: 8px;
+	outline: none;
+	flex: 1;
+	resize: none;
+	border:0;
+	font-size: 16px;
+	background-color: #eee;
+	height: 60px;
+	overflow-y: auto;
+}
+.message_send_box_exeBtn {
+	text-align: right;
+	padding: 5px 5px 12px 0;
+}
+.message_send_box_exeBtn>button {
+	display: inline-block;
+	border:1px solid #c1c1c1;
+	background-color: #fff;
+	color: #222;
+	border-radius: 5px;
+	padding: 3px 30px;
+	font-size: 14px;
+	cursor: pointer;
+}
+.clickonColor {
+	background-color: #414751 !important;
+}
